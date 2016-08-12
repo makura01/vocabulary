@@ -1,17 +1,8 @@
 #!/bin/sh
 
-echo "what is the meaningo of..."
-
-#give questiongs
-q = awk '{print $1}' eng.data
-
-#get the user answer
-read meaning
-
-if [ q eq meaning ]; then
-  echo "good"
-fi
-
-while read line
-
-
+for question in eng.data
+do
+  awk '{print "what is the meaning of ...?" $1}' $question
+  read ans </dev/tty
+  awk '$2 == ans {print "good"}' $question
+done

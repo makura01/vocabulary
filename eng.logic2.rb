@@ -1,12 +1,18 @@
+# gloable hash
+question_data = Hash.new
+
 File.open("eng.data").readlines.each do |line|
   array = line.split(" ")
-  puts "answer the meaning of #{array[0]}"
+  question_data.merge!({ array[0] => array[1]})
+end 
+
+question_data.each do |key, value| 
+  puts"what is the meaning of #{key} ?"
   ans = gets.chop
-  if ans == array[1]
-    puts "good!!"
+  if (ans == value)
+    puts "good"
   else
-    puts "bad..."
-    puts "answer is #{array[1]}"
+    puts"bad!! correct answer is #{value}"
   end
-  sleep(3)
+  sleep(2)
 end
